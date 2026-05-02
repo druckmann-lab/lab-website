@@ -26,7 +26,7 @@ Here is a plot of your chance of winning the multiversal horse race as a functio
 
 <figure id="fig1" style="width: 100%; text-align: center; margin: 20px auto;">
   <div style="display: flex; justify-content: center;">
-    <img src="/assets/images/BHRP_success_plots.png" alt="Description" style="width: 50%; max-width: 500px;">
+    <img src="/blog/assets/images/BHRP_success_plots.png" alt="Description" style="width: 50%; max-width: 500px;">
   </div>
   <figcaption style="width: 100%; margin-top: 10px;"><strong> Figure 1: Multiversal Stochastic Bookie Horse Race success probability curves</strong>. X-axis corresponds to probability of single race and y-axis corresponds to probability of winning across all races. Each curve corresponds to a different value of N, i.e., a different number of universes.</figcaption>
 </figure>
@@ -39,7 +39,7 @@ Let's move to a slightly more complicated situation. The horse race now has k ho
 
 <figure id="fig2" style="width: 100%; text-align: center; margin: 20px auto;">
   <div style="display: flex; justify-content: center;">
-    <img src="/assets/images/i_beam_plot_modified_to_arrows.png" alt="Description" style="width: 90%; max-width: 750px;">
+    <img src="/blog/assets/images/i_beam_plot_modified_to_arrows.png" alt="Description" style="width: 90%; max-width: 750px;">
   </div>
   <figcaption style="width: 100%; margin-top: 10px;"><strong> Figure 2: Comparison of two bookies </strong>. Comparison of two bookies for different values of universe number N. X-axis corresponds to probability of single race and y-axis corresponds to probability of winning across all races. Blue dots show original offer for the first two most probable horses.  Red dots correspond to the second offer. Dots are shown for N=1 and N=8. Left shows both curves. Middle shows difference between original and new offer with arrows for N=1. Right shows difference between original and new offer with arrous for N=8</figcaption>
 </figure>
@@ -50,7 +50,7 @@ But does it matter that we reduced the probability of a horse that is less likel
 
 <figure id="fig1" style="width: 100%; text-align: center; margin: 20px auto;">
   <div style="display: flex; justify-content: center;">
-    <img src="/assets/images/outcome_difference_plot.png" alt="Description" style="width: 50%; max-width: 500px;">
+    <img src="/blog/assets/images/outcome_difference_plot.png" alt="Description" style="width: 50%; max-width: 500px;">
   </div>
   <figcaption style="width: 100%; margin-top: 10px;"><strong> Figure 3: Outcome difference between original and second offer</strong>. x-axis corresponds to $N$, the number of universes. y-axis corresponds to difference in expected outcome if the second offer is accepted. Positive values mean it is beneficial to accept it, negative values mean it is not. Each curve corresponds to different probabilities of the first two horses winning the race. Note: this is different and independent of the probabilties we discussed before of the bookie placing bets on these horses for us. All we know is that the most probable should be most probable. For instance, in the first (blue) curve there is a very high chance of the most probable horse winning and a low chance of the next probable. In the last (purple) curve, the most probable is still more probable but only slightly so.</figcaption>
 </figure>
@@ -176,7 +176,7 @@ Next we tie together the empirically worse performance we observe and the notion
 
 <figure id="fig2" style="width: 100%; text-align: center; margin: 20px auto;">
   <div style="display: flex; justify-content: center;">
-    <img src="/assets/images/Reduced_DCO_for_post_v2.png" alt="Description" style="width: 80%; max-width: 750px;">
+    <img src="/blog/assets/images/Reduced_DCO_for_post_v2.png" alt="Description" style="width: 80%; max-width: 750px;">
   </div>
   <figcaption style="width: 100%; margin-top: 10px;"><strong> Figure 4: Empirical demonstration of worse performance of standard training on pass @N </strong>. <strong> Left:</strong> The model trained with CE loss assigns progressively larger confidences $\hat{p}(\hat{y}_\text{greedy}|x)$ to its greedy completions over the course of training. <strong> Right:</strong> At the end of the training, only a small portion of the model's highly confident completions are correct. These will harm the model's pass@N performance when scaling up $N$. </figcaption>
 </figure>
