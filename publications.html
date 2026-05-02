@@ -184,6 +184,10 @@
 
         let activeFilters = new Set(); // Changed to Set for multi-select
 
+        function abbreviateAuthors(authors) {
+            return authors.replace(/\b([A-Z])\w+(?:\s+[A-Z]\.)*(?=\s+[A-Z][\w-]+)/g, '$1.');
+        }
+
         function renderPublication(pub, index = null, showYear = true) {
             const links = [];
             if (pub.links?.paper) links.push(`<a href="${pub.links.paper}" class="pub-link" target="_blank">Paper</a>`);
@@ -192,11 +196,10 @@
 
             return `
                 <article class="publication" data-venue="${pub.venue}">
-                    ${index !== null ? `<div class="publication__number">${index}.</div>` : ''}
                     <h3 class="publication__title">
-                        ${pub.links?.paper ? `<a href="${pub.links.paper}" target="_blank">${pub.title}</a>` : pub.title}
+                        ${index !== null ? `<span class="publication__number">${index}.</span> ` : ''}${pub.links?.paper ? `<a href="${pub.links.paper}" target="_blank">${pub.title}</a>` : pub.title}
                     </h3>
-                    <p class="publication__authors">${pub.authors}. ${showYear ? `(${pub.year}). ` : ''}<em>${pub.venue}</em>${pub.note ? `. ${pub.note}` : ''}</p>
+                    <p class="publication__authors">${abbreviateAuthors(pub.authors)} (${pub.year}). <em>${pub.venue}</em>${pub.note ? `. ${pub.note}` : ''}</p>
                     ${links.length ? `<div class="publication__links">${links.join('')}</div>` : ''}
                 </article>
             `;
@@ -215,11 +218,8 @@
         function renderBookChapter(pub, index) {
             return `
                 <article class="publication" data-venue="Book Chapter">
-                    <div class="publication__number">${index}.</div>
-                    <h3 class="publication__title">${pub.title}</h3>
-                    <p class="publication__authors">${pub.authors}</p>
-                    <p class="publication__venue"><em>${pub.venue}</em></p>
-                    <p class="publication__editors">${pub.editors} ${pub.publisher}, ${pub.year}${pub.pages ? `, pp. ${pub.pages}` : ''}</p>
+                    <h3 class="publication__title"><span class="publication__number">${index}.</span> ${pub.title}</h3>
+                    <p class="publication__authors">${abbreviateAuthors(pub.authors)} (${pub.year}). <em>${pub.venue}</em>. ${pub.editors} ${pub.publisher}${pub.pages ? `, pp. ${pub.pages}` : ''}</p>
                 </article>
             `;
         }
