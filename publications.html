@@ -196,12 +196,7 @@
                     <h3 class="publication__title">
                         ${pub.links?.paper ? `<a href="${pub.links.paper}" target="_blank">${pub.title}</a>` : pub.title}
                     </h3>
-                    <p class="publication__authors">${pub.authors}</p>
-                    <p class="publication__venue">
-                        ${showYear ? `<span class="year-badge">${pub.year}</span>` : ''}
-                        <em>${pub.venue}</em>
-                    </p>
-                    ${pub.note ? `<p class="publication__note">${pub.note}</p>` : ''}
+                    <p class="publication__authors">${pub.authors}. ${showYear ? `(${pub.year}). ` : ''}<em>${pub.venue}</em>${pub.note ? `. ${pub.note}` : ''}</p>
                     ${links.length ? `<div class="publication__links">${links.join('')}</div>` : ''}
                 </article>
             `;
