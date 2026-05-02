@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research — Druckmann Lab</title>
+    <meta name="description" content="Research areas of the Druckmann Lab at Stanford University.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="src/styles/style.css">
+
+    <link rel="stylesheet" href="src/styles/pages/research.css">
+    <link rel="stylesheet" href="src/styles/theme-minimal.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo">Druckmann Lab</a>
+            <ul class="nav__links">
+                <li><a href="people.html" class="nav__link">People</a></li>
+                <li><a href="research.html" class="nav__link active">Research</a></li>
+                <li><a href="publications.html" class="nav__link">Publications</a></li>
+                <li><a href="teaching.html" class="nav__link">Teaching</a></li>
+                <li><a href="contact.html" class="nav__link">Contact</a></li>
+                <li><a href="blog/" class="nav__link">Blog</a></li>
+                <!-- <li><a href="news.html" class="nav__link">News</a></li> -->
+            </ul>
+            <button class="nav__toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <header class="page-header">
+            <div class="container">
+                <h1 class="page-header__title">Research</h1>
+                <p class="page-header__description">
+                    Our research focuses on understanding how neural circuits perform computations.
+                </p>
+            </div>
+        </header>
+
+        <section class="section">
+            <div class="container" id="research-areas">
+                <!-- Rendered from data/research.js -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__bottom">
+                &copy;
+                <script>document.write(new Date().getFullYear())</script> Druckmann Lab
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { RESEARCH_AREAS } from './src/data/research.js';
+
+        const VISUALS = {
+            'neural-dynamics': `<svg viewBox="0 0 200 150"><path d="M30,120 Q60,80 80,100 T120,60 T160,40 T180,30" fill="none" stroke="#8b2942" stroke-width="2" opacity="0.7"/><path d="M35,125 Q65,90 85,105 T125,70 T165,50 T175,45" fill="none" stroke="#8b2942" stroke-width="1" opacity="0.3"/><path d="M25,115 Q55,70 75,95 T115,50 T155,30 T185,25" fill="none" stroke="#8b2942" stroke-width="1" opacity="0.3"/><circle cx="30" cy="120" r="4" fill="#8b2942"/><circle cx="180" cy="30" r="4" fill="#8b2942"/><text x="20" y="135" font-size="8" fill="#9c9490">Start</text><text x="170" y="22" font-size="8" fill="#9c9490">End</text></svg>`,
+            'circuit-mechanisms': `<svg viewBox="0 0 200 150"><circle cx="50" cy="75" r="12" fill="none" stroke="#8b2942" stroke-width="1.5"/><circle cx="100" cy="40" r="12" fill="none" stroke="#8b2942" stroke-width="1.5"/><circle cx="100" cy="110" r="12" fill="none" stroke="#8b2942" stroke-width="1.5"/><circle cx="150" cy="75" r="12" fill="none" stroke="#8b2942" stroke-width="1.5"/><line x1="62" y1="70" x2="88" y2="45" stroke="#8b2942" stroke-width="1" opacity="0.5"/><line x1="62" y1="80" x2="88" y2="105" stroke="#8b2942" stroke-width="1" opacity="0.5"/><line x1="112" y1="40" x2="138" y2="70" stroke="#8b2942" stroke-width="1" opacity="0.5"/><line x1="112" y1="110" x2="138" y2="80" stroke="#8b2942" stroke-width="1" opacity="0.5"/><line x1="100" y1="52" x2="100" y2="98" stroke="#8b2942" stroke-width="1" opacity="0.5"/><circle cx="50" cy="75" r="3" fill="#8b2942"/><circle cx="100" cy="40" r="3" fill="#8b2942"/><circle cx="100" cy="110" r="3" fill="#8b2942"/><circle cx="150" cy="75" r="3" fill="#8b2942"/></svg>`,
+            'decision-making': `<svg viewBox="0 0 200 150"><line x1="100" y1="20" x2="100" y2="130" stroke="#e8e4e0" stroke-width="1" stroke-dasharray="4"/><path d="M20,75 Q50,75 70,60 T100,40" fill="none" stroke="#8b2942" stroke-width="2"/><path d="M20,75 Q50,75 70,90 T100,110" fill="none" stroke="#8b2942" stroke-width="2" opacity="0.5"/><circle cx="20" cy="75" r="4" fill="#8b2942"/><circle cx="100" cy="40" r="4" fill="#8b2942"/><circle cx="100" cy="110" r="4" fill="#8b2942" opacity="0.5"/><text x="105" y="35" font-size="8" fill="#9c9490">Choice A</text><text x="105" y="115" font-size="8" fill="#9c9490">Choice B</text><text x="10" y="70" font-size="8" fill="#9c9490">Stimulus</text></svg>`,
+            'methods': `<svg viewBox="0 0 200 150"><rect x="20" y="30" width="60" height="90" fill="none" stroke="#e8e4e0" stroke-width="1"/><text x="50" y="20" font-size="7" fill="#9c9490" text-anchor="middle">High-D</text><circle cx="35" cy="50" r="2" fill="#8b2942" opacity="0.5"/><circle cx="55" cy="65" r="2" fill="#8b2942" opacity="0.5"/><circle cx="45" cy="80" r="2" fill="#8b2942" opacity="0.5"/><circle cx="60" cy="55" r="2" fill="#8b2942" opacity="0.5"/><circle cx="40" cy="100" r="2" fill="#8b2942" opacity="0.5"/><circle cx="65" cy="90" r="2" fill="#8b2942" opacity="0.5"/><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8b2942"/></marker></defs><path d="M90,75 L120,75" stroke="#8b2942" stroke-width="1.5" marker-end="url(#arrow)"/><rect x="130" y="45" width="50" height="60" fill="none" stroke="#e8e4e0" stroke-width="1"/><text x="155" y="35" font-size="7" fill="#9c9490" text-anchor="middle">Low-D</text><path d="M140,90 Q150,70 160,80 T175,60" fill="none" stroke="#8b2942" stroke-width="1.5"/></svg>`
+        };
+
+        const container = document.getElementById('research-areas');
+        if (container) {
+            container.innerHTML = RESEARCH_AREAS.map(area => `
+                <article class="research-area" id="${area.id}">
+                    <div class="research-area__content">
+                        <p class="research-area__number">${area.number} — ${area.label}</p>
+                        <h2 class="research-area__title">${area.title}</h2>
+                        ${area.description.map(p => `<p class="research-area__text">${p}</p>`).join('')}
+                        <div class="research-area__keywords">
+                            ${area.keywords.map(k => `<span class="keyword">${k}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="research-area__visual">
+                        ${VISUALS[area.id] || ''}
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu
+        const toggle = document.querySelector('.nav__toggle');
+        const links = document.querySelector('.nav__links');
+        toggle?.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('active');
+        });
+    </script>
+    <script src="src/theme-switcher.js"></script>
+</body>
+
+</html>

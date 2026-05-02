@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching — Druckmann Lab</title>
+    <meta name="description" content="Courses and educational resources from the Druckmann Lab at Stanford University.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="src/styles/style.css">
+
+    <link rel="stylesheet" href="src/styles/pages/teaching.css">
+    <link rel="stylesheet" href="src/styles/theme-minimal.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo">Druckmann Lab</a>
+            <ul class="nav__links">
+                <li><a href="people.html" class="nav__link">People</a></li>
+                <li><a href="research.html" class="nav__link">Research</a></li>
+                <li><a href="publications.html" class="nav__link">Publications</a></li>
+                <li><a href="teaching.html" class="nav__link active">Teaching</a></li>
+                <li><a href="contact.html" class="nav__link">Contact</a></li>
+                <li><a href="blog/" class="nav__link">Blog</a></li>
+                <!-- <li><a href="news.html" class="nav__link">News</a></li> -->
+            </ul>
+            <button class="nav__toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <header class="page-header">
+            <div class="container">
+                <h1 class="page-header__title">Teaching</h1>
+                <p class="page-header__description">
+                    Courses and resources for computational neuroscience education.
+                </p>
+            </div>
+        </header>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="subsection__title">Courses</h2>
+
+                <div class="courses-list" id="courses-list">
+                    <!-- Rendered from data/teaching.js -->
+                </div>
+
+                <!-- Recommended Reading -->
+                <div class="reading-section">
+                    <h2 class="subsection__title">Recommended Reading</h2>
+                    <p class="subsection__intro">
+                        When done in the static regime, population analysis is no different than standard
+                        multi-variate statistical analysis. A classical perspective on these is useful
+                        before considering more modern approaches (e.g., deep learning).
+                    </p>
+
+                    <div class="reading-list" id="reading-list">
+                        <!-- Rendered from data/teaching.js -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <a href="https://www.stanford.edu/" target="_blank" rel="noopener" class="footer__stanford-logo">
+                        <img src="public/logos/stanford.png" alt="Stanford University"
+                            style="height: 48px; opacity: 0.8;">
+                    </a>
+                    <p class="footer__logo">Druckmann Lab</p>
+                    <p class="footer__tagline">Computational neuroscience research at Stanford University.</p>
+                </div>
+                <div class="footer__links">
+                                        <div class="footer__column">
+                        <h4>Lab</h4>
+                        <ul>
+                            <li><a href="people.html">People</a></li>
+                            <li><a href="publications.html">Publications</a></li>
+                            <li><a href="teaching.html">Teaching</a></li>
+                            <li><a href="news.html">News</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4>Code &amp; Tools</h4>
+                        <ul>
+                            <li><a href="https://github.com/druckmann-lab">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">©
+                <script>document.write(new Date().getFullYear())</script> Druckmann Lab
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { COURSES, READING } from './src/data/teaching.js';
+
+        // Render Courses
+        const coursesList = document.getElementById('courses-list');
+        if (coursesList) {
+            coursesList.innerHTML = COURSES.map(course => `
+                <article class="course-card">
+                    <p class="course-card__code">${course.code} · ${course.term}</p>
+                    <h3 class="course-card__title">
+                        <a href="${course.url}" target="_blank">${course.title}</a>
+                    </h3>
+                    <p class="course-card__description">${course.description}</p>
+                    <a href="${course.url}" class="course-card__link" target="_blank">
+                        Course Website →
+                    </a>
+                </article>
+            `).join('');
+        }
+
+        // Render Reading List
+        const readingList = document.getElementById('reading-list');
+        if (readingList) {
+            readingList.innerHTML = READING.map(item => `
+                <div class="reading-item">
+                    <h3 class="reading-item__title">${item.title}</h3>
+                    <p class="reading-item__authors">${item.authors}</p>
+                    <p class="reading-item__description">${item.description}</p>
+                </div>
+            `).join('');
+        }
+
+        // Nav effects
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+        const toggle = document.querySelector('.nav__toggle');
+        const links = document.querySelector('.nav__links');
+        toggle?.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('active');
+        });
+    </script>
+    <script src="src/theme-switcher.js"></script>
+</body>
+
+</html>

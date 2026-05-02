@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News — Druckmann Lab</title>
+    <meta name="description" content="News and announcements from the Druckmann Lab at Stanford University.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="src/styles/style.css">
+
+    <link rel="stylesheet" href="src/styles/pages/news.css">
+    <link rel="stylesheet" href="src/styles/theme-minimal.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo">Druckmann Lab</a>
+            <ul class="nav__links">
+                <li><a href="people.html" class="nav__link">People</a></li>
+                <li><a href="research.html" class="nav__link">Research</a></li>
+                <li><a href="publications.html" class="nav__link">Publications</a></li>
+                <li><a href="teaching.html" class="nav__link">Teaching</a></li>
+                <li><a href="contact.html" class="nav__link">Contact</a></li>
+                <li><a href="blog/" class="nav__link">Blog</a></li>
+                <!-- <li><a href="news.html" class="nav__link active">News</a></li> -->
+            </ul>
+            <button class="nav__toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Page Header -->
+        <header class="page-header">
+            <div class="container">
+                <p class="page-header__eyebrow">Latest Updates</p>
+                <h1 class="page-header__title">News</h1>
+                <p class="page-header__description">
+                    Announcements, publications, talks, and other updates from the lab.
+                </p>
+            </div>
+        </header>
+
+        <!-- News List -->
+        <section class="news-section">
+            <div class="container" id="news-container">
+                <!-- Rendered from data/news.js -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <a href="https://www.stanford.edu/" target="_blank" rel="noopener" class="footer__stanford-logo">
+                        <img src="public/logos/stanford.png" alt="Stanford University"
+                            style="height: 48px; opacity: 0.8;">
+                    </a>
+                    <p class="footer__logo">Druckmann Lab</p>
+                    <p class="footer__tagline">
+                        Computational neuroscience research at Stanford University.
+                    </p>
+                </div>
+                <div class="footer__links">
+                                        <div class="footer__column">
+                        <h4>Lab</h4>
+                        <ul>
+                            <li><a href="people.html">People</a></li>
+                            <li><a href="publications.html">Publications</a></li>
+                            <li><a href="teaching.html">Teaching</a></li>
+                            <li><a href="news.html">News</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4>Code &amp; Tools</h4>
+                        <ul>
+                            <li><a href="https://github.com/druckmann-lab">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                © <script>document.write(new Date().getFullYear())</script> Druckmann Lab
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { NEWS, formatDate, getNewsByYear } from './src/data/news.js';
+
+        const container = document.getElementById('news-container');
+        const newsByYear = getNewsByYear();
+
+        container.innerHTML = newsByYear.map(({ year, items }) => `
+            <div class="news-year">
+                <h2 class="news-year__title">${year}</h2>
+                <div class="news-timeline">
+                    ${items.map(item => `
+                        <article class="news-item">
+                            <time class="news-item__date">${formatDate(item.date)}</time>
+                            <h3 class="news-item__title">
+                                <a href="news-item.html?date=${item.date}">${item.title}</a>
+                            </h3>
+                            ${item.description ? `<p class="news-item__description">${item.description}</p>` : ''}
+                            ${item.tags ? `
+                                <div class="news-item__tags">
+                                    ${item.tags.map(tag => `<span class="news-item__tag">${tag}</span>`).join('')}
+                                </div>
+                            ` : ''}
+                            ${item.link ? `<a href="${item.link}" class="news-item__link" target="_blank">External Link →</a>` : ''}
+                            ${item.contentPath ? `<a href="news-item.html?date=${item.date}" class="news-item__link">Read more →</a>` : ''}
+                        </article>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu toggle
+        const toggle = document.querySelector('.nav__toggle');
+        const links = document.querySelector('.nav__links');
+        toggle?.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            links.classList.toggle('active');
+        });
+    </script>
+    <script src="src/theme-switcher.js"></script>
+</body>
+
+</html>

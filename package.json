@@ -1,0 +1,21 @@
+{
+  "name": "druckmann-lab-website",
+  "version": "1.0.0",
+  "description": "Website for the Druckmann Lab at Stanford University",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run build:members && npx live-server --port=3000",
+    "build": "npm run build:members",
+    "build:members": "node scripts/build-members.js",
+    "lint": "eslint src/",
+    "format": "prettier --write src/"
+  },
+  "keywords": ["neuroscience", "stanford", "research", "lab"],
+  "author": "Druckmann Lab",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "live-server": "^1.2.2",
+    "prettier": "^3.0.0"
+  }
+}

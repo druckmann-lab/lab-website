@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News — Druckmann Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="src/styles/pages/news-item.css">
+    <link rel="stylesheet" href="src/styles/theme-minimal.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo">Druckmann Lab</a>
+            <ul class="nav__links">
+                <li><a href="people.html" class="nav__link">People</a></li>
+                <li><a href="research.html" class="nav__link">Research</a></li>
+                <li><a href="publications.html" class="nav__link">Publications</a></li>
+                <li><a href="teaching.html" class="nav__link">Teaching</a></li>
+                <li><a href="contact.html" class="nav__link">Contact</a></li>
+                <li><a href="blog/" class="nav__link">Blog</a></li>
+                <!-- <li><a href="news.html" class="nav__link active">News</a></li> -->
+            </ul>
+            <button class="nav__toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <!-- Content rendered by JavaScript -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <a href="https://www.stanford.edu/" target="_blank" rel="noopener" class="footer__stanford-logo">
+                        <img src="public/logos/stanford.png" alt="Stanford University"
+                            style="height: 48px; opacity: 0.8;">
+                    </a>
+                    <p class="footer__logo">Druckmann Lab</p>
+                    <p class="footer__tagline">
+                        Computational neuroscience research at Stanford University.
+                    </p>
+                </div>
+                <div class="footer__links">
+                                        <div class="footer__column">
+                        <h4>Lab</h4>
+                        <ul>
+                            <li><a href="people.html">People</a></li>
+                            <li><a href="publications.html">Publications</a></li>
+                            <li><a href="teaching.html">Teaching</a></li>
+                            <li><a href="news.html">News</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4>Code &amp; Tools</h4>
+                        <ul>
+                            <li><a href="https://github.com/druckmann-lab">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                © <script>document.write(new Date().getFullYear())</script> Druckmann Lab
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { NEWS, formatDate } from './src/data/news.js';
+
+        // Get date from URL
+        const params = new URLSearchParams(window.location.search);
+        const dateParam = params.get('date');
+
+        // Find the news item
+        const newsItem = NEWS.find(item => item.date === dateParam);
+
+        const main = document.getElementById('main-content');
+
+        if (!newsItem) {
+            // Not found state
+            main.innerHTML = `
+                <div class="news-not-found">
+                    <h1 class="news-not-found__title">News item not found</h1>
+                    <p class="news-not-found__text">The news item you're looking for doesn't exist or has been removed.</p>
+                    <a href="news.html" class="btn btn--secondary">← Back to News</a>
+                </div>
+            `;
+        } else {
+            // Update page title
+            document.title = `${newsItem.title} — Druckmann Lab`;
+
+            // Render header
+            let content = `
+                <header class="news-header">
+                    <div class="container">
+                        <a href="news.html" class="news-header__back">← Back to News</a>
+                        <time class="news-header__date">${formatDate(newsItem.date)}</time>
+                        <h1 class="news-header__title">${newsItem.title}</h1>
+                        ${newsItem.description ? `<p class="news-header__description">${newsItem.description}</p>` : ''}
+                        ${newsItem.tags ? `
+                            <div class="news-header__tags">
+                                ${newsItem.tags.map(tag => `<span class="news-header__tag">${tag}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                </header>
+            `;
+
+            // If there's a contentPath, load the markdown
+            if (newsItem.contentPath) {
+                content += `
+                    <section class="news-content">
+                        <div class="container">
+                            <div class="news-content__inner">
+                                <div class="news-content__body" id="markdown-content">
+                                    Loading...
+                                </div>
+                                ${newsItem.link ? `
+                                    <a href="${newsItem.link}" class="news-content__external" target="_blank">
+                                        View External Link →
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </section>
+                `;
+
+                main.innerHTML = content;
+
+                // Load markdown content
+                fetch(`public/posts/${newsItem.contentPath}`)
+                    .then(res => {
+                        if (!res.ok) throw new Error('Not found');
+                        return res.text();
+                    })
+                    .then(md => {
+                        // Simple markdown to HTML conversion
+                        const html = parseMarkdown(md);
+                        document.getElementById('markdown-content').innerHTML = html;
+                    })
+                    .catch(() => {
+                        document.getElementById('markdown-content').innerHTML = `
+                            <p style="color: var(--color-text-secondary); font-style: italic;">
+                                Extended content not available.
+                            </p>
+                        `;
+                    });
+            } else if (newsItem.link) {
+                // Just show external link
+                content += `
+                    <section class="news-content">
+                        <div class="container">
+                            <div class="news-content__inner">
+                                <a href="${newsItem.link}" class="news-content__external" target="_blank">
+                                    View External Link →
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                `;
+                main.innerHTML = content;
+            } else {
+                main.innerHTML = content;
+            }
+        }
+
+        // Simple markdown parser
+        function parseMarkdown(md) {
+            let html = md
+                // Headers
+                .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+                .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+                .replace(/^# (.*$)/gm, '<h2>$1</h2>')
+                // Bold
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                // Italic
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                // Images (BEFORE links)
+                .replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1">')
+                // Links
+                .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>')
+                // Unordered lists
+                .replace(/^\s*[-*]\s+(.*$)/gm, '<li>$1</li>')
+                // Blockquotes
+                .replace(/^>\s+(.*$)/gm, '<blockquote>$1</blockquote>')
+                // Paragraphs
+                .replace(/\n\n/g, '</p><p>')
+                // Wrap in paragraph
+                .replace(/^(.+)$/gm, (match) => {
+                    if (match.startsWith('<')) return match;
+                    return match;
+                });
+
+            // Wrap consecutive <li> elements in <ul>
+            html = html.replace(/((?:<li>.*<\/li>\s*)+)/g, '<ul>$1</ul>');
+
+            return html;
+        }
+
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu toggle
+        const toggle = document.querySelector('.nav__toggle');
+        const links = document.querySelector('.nav__links');
+        toggle?.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            links.classList.toggle('active');
+        });
+    </script>
+    <script src="src/theme-switcher.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Profile - Druckmann Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="src/styles/pages/person.css">
+    <link rel="stylesheet" href="src/styles/theme-minimal.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo">Druckmann Lab</a>
+            <ul class="nav__links">
+                <li><a href="people.html" class="nav__link active">People</a></li>
+                <li><a href="research.html" class="nav__link">Research</a></li>
+                <li><a href="publications.html" class="nav__link">Publications</a></li>
+                <li><a href="teaching.html" class="nav__link">Teaching</a></li>
+                <li><a href="contact.html" class="nav__link">Contact</a></li>
+                <li><a href="blog/" class="nav__link">Blog</a></li>
+                <!-- <li><a href="news.html" class="nav__link">News</a></li> -->
+            </ul>
+            <button class="nav__toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="profile-header">
+            <div class="container">
+                <div class="profile-header__back">
+                    <a href="people.html">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                        Back to People
+                    </a>
+                </div>
+                <div class="profile-header__inner" id="profile-content">
+                    <!-- Content loaded via JS -->
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="profile-publications" id="publications-content">
+                    <!-- Publications loaded via JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <a href="https://www.stanford.edu/" target="_blank" rel="noopener" class="footer__stanford-logo">
+                        <img src="public/logos/stanford.png" alt="Stanford University"
+                            style="height: 48px; opacity: 0.8;">
+                    </a>
+                    <p class="footer__logo">Druckmann Lab</p>
+                    <p class="footer__tagline">Computational neuroscience research at Stanford University.</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__column">
+                        <h4>Lab</h4>
+                        <ul>
+                            <li><a href="people.html">People</a></li>
+                            <li><a href="publications.html">Publications</a></li>
+                            <li><a href="teaching.html">Teaching</a></li>
+                            <li><a href="news.html">News</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4>Code &amp; Tools</h4>
+                        <ul>
+                            <li><a href="https://github.com/druckmann-lab">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">©
+                <script>document.write(new Date().getFullYear())</script> Druckmann Lab
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { PI, POSTDOCS, GRAD_STUDENTS, STAFF, ALUMNI, getMemberById } from './src/data/members/index.js';
+        import { getPublicationsByMember } from './src/data/publications.js';
+
+        // SVG icons
+        const icons = {
+            email: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>',
+            web: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+            scholar: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>',
+            linkedin: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>'
+        };
+
+        // Get member ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const memberId = urlParams.get('id');
+
+        // Find member in all arrays
+        function findMember(id) {
+            const allMembers = [PI, ...POSTDOCS, ...GRAD_STUDENTS, ...STAFF, ...ALUMNI];
+            return allMembers.find(m => m.id === id);
+        }
+
+        // Check if member is alumni
+        function isAlumni(id) {
+            return ALUMNI.some(m => m.id === id);
+        }
+
+        // Render profile header
+        function renderProfile(member) {
+            if (!member) {
+                document.getElementById('profile-content').innerHTML = `
+                    <div class="profile-empty">
+                        <h2>Member not found</h2>
+                        <p>The requested profile could not be found.</p>
+                        <a href="people.html">← Back to People</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Update page title
+            document.title = `${member.name} - Druckmann Lab`;
+
+            const alumniStatus = isAlumni(member.id);
+            const links = [];
+
+            if (member.email) links.push(`<a href="mailto:${member.email}" class="profile-header__link">${icons.email} Email</a>`);
+            if (member.website) links.push(`<a href="${member.website}" target="_blank" class="profile-header__link">${icons.web} Website</a>`);
+            if (member.scholar) links.push(`<a href="${member.scholar}" target="_blank" class="profile-header__link">${icons.scholar} Scholar</a>`);
+            if (member.linkedin) links.push(`<a href="${member.linkedin}" target="_blank" class="profile-header__link">${icons.linkedin} LinkedIn</a>`);
+
+            document.getElementById('profile-content').innerHTML = `
+                <img src="public/members/${member.img}" 
+                     alt="${member.name}" 
+                     class="profile-header__image"
+                     onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23f5f3f0%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%239c9490%22 font-size=%2240%22>${member.name.charAt(0)}</text></svg>'">
+                <div class="profile-header__content">
+                    <h1 class="profile-header__name">
+                        ${member.name}
+                        ${alumniStatus ? '<span class="profile-header__alumni-badge">Alumni</span>' : ''}
+                    </h1>
+                    <p class="profile-header__role">${member.role}${member.program ? ` · ${member.program}` : ''}</p>
+                    ${member.coAdvisor ? `<p class="profile-header__program">Co-advised with ${member.coAdvisor}</p>` : ''}
+                    ${member.years ? `<p class="profile-header__program">${member.years}</p>` : ''}
+                    ${alumniStatus && member.currentPosition ? `<p class="profile-header__current">Currently: ${member.currentPosition}</p>` : ''}
+                    ${member.bio ? `<p class="profile-header__bio">${member.bio}</p>` : ''}
+                    ${member.education?.length ? `
+                        <div class="profile-header__education">
+                            ${member.education.map(e => `<p>${e}</p>`).join('')}
+                        </div>
+                    ` : ''}
+                    ${links.length ? `<div class="profile-header__links">${links.join('')}</div>` : ''}
+                </div>
+            `;
+        }
+
+        // Render publications
+        function renderPublications(member) {
+            if (!member) return;
+
+            const { publications, preprints, bookChapters } = getPublicationsByMember(member.name);
+            const container = document.getElementById('publications-content');
+            const total = publications.length + preprints.length + bookChapters.length;
+
+            if (total === 0) {
+                container.innerHTML = `
+                    <h2 class="profile-section__title">Publications</h2>
+                    <p style="color: var(--color-text-muted);">No publications found in our database.</p>
+                `;
+                return;
+            }
+
+            // Group by year helper
+            function groupByYear(pubs) {
+                const byYear = {};
+                pubs.forEach(pub => {
+                    if (!byYear[pub.year]) byYear[pub.year] = [];
+                    byYear[pub.year].push(pub);
+                });
+                return Object.keys(byYear).sort((a, b) => b - a).map(year => ({ year, items: byYear[year] }));
+            }
+
+            function renderPubItem(pub) {
+                return `
+                    <div class="profile-pub-item">
+                        <h4 class="profile-pub-item__title">
+                            ${pub.links?.paper ? `<a href="${pub.links.paper}" target="_blank">${pub.title}</a>` : pub.title}
+                        </h4>
+                        <p class="profile-pub-item__authors">${pub.authors}</p>
+                        <p class="profile-pub-item__venue">
+                            <strong>${pub.venue}</strong>${pub.note ? ` · ${pub.note}` : ''}
+                        </p>
+                    </div>
+                `;
+            }
+
+            function renderYearGroups(pubs) {
+                return groupByYear(pubs).map(({ year, items }) => `
+                    <div class="profile-year-group">
+                        <h3 class="profile-year-group__title">${year}</h3>
+                        <div class="profile-pub-list">
+                            ${items.map(renderPubItem).join('')}
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            let html = `<h2 class="profile-section__title">Publications (${publications.length})</h2>`;
+
+            if (publications.length > 0) {
+                html += renderYearGroups(publications);
+            }
+
+            if (preprints.length > 0) {
+                html += `<h2 class="profile-section__title" style="margin-top: var(--space-xl);">Preprints (${preprints.length})</h2>`;
+                html += renderYearGroups(preprints);
+            }
+
+            if (bookChapters.length > 0) {
+                html += `<h2 class="profile-section__title" style="margin-top: var(--space-xl);">Book Chapters (${bookChapters.length})</h2>`;
+                html += renderYearGroups(bookChapters);
+            }
+
+            container.innerHTML = html;
+        }
+
+        // Initialize
+        const member = findMember(memberId);
+        renderProfile(member);
+        renderPublications(member);
+
+        // Nav effects
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+        const toggle = document.querySelector('.nav__toggle');
+        const navLinks = document.querySelector('.nav__links');
+        toggle?.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            toggle.classList.toggle('active');
+        });
+    </script>
+    <script src="src/theme-switcher.js"></script>
+</body>
+
+</html>

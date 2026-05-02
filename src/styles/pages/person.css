@@ -1,0 +1,245 @@
+/* Person Profile Page Styles */
+.profile-header {
+    background: linear-gradient(135deg, #f8f6f4 0%, #f0ece8 100%);
+    padding: var(--space-xl) 0;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.profile-header__inner {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+}
+
+.profile-header__image {
+    width: 180px;
+    height: 180px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: var(--color-bg-alt);
+}
+
+.profile-header__content {
+    max-width: 700px;
+}
+
+.profile-header__name {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: var(--space-xs);
+    line-height: 1.2;
+}
+
+.profile-header__role {
+    font-size: 1.1rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    margin-bottom: var(--space-xs);
+}
+
+.profile-header__program {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+.profile-header__bio {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+}
+
+.profile-header__education {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+}
+
+.profile-header__education p {
+    margin: 4px 0;
+}
+
+.profile-header__links {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.profile-header__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.profile-header__link:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.profile-header__link svg {
+    width: 16px;
+    height: 16px;
+}
+
+.profile-header__back {
+    margin-bottom: var(--space-lg);
+}
+
+.profile-header__back a {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.profile-header__back a:hover {
+    color: var(--color-accent);
+}
+
+/* Publications Section */
+.profile-publications {
+    margin-top: var(--space-xl);
+}
+
+.profile-section__title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-border-light);
+}
+
+.profile-pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.profile-pub-item {
+    padding: var(--space-md);
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.profile-pub-item:hover {
+    background: var(--color-bg-alt);
+}
+
+.profile-pub-item__title {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.profile-pub-item__title a {
+    color: inherit;
+}
+
+.profile-pub-item__title a:hover {
+    color: var(--color-accent);
+}
+
+.profile-pub-item__authors {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 4px;
+}
+
+.profile-pub-item__venue {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.profile-pub-item__venue strong {
+    color: var(--color-accent);
+    font-weight: 500;
+}
+
+/* Year Groups */
+.profile-year-group {
+    margin-bottom: var(--space-xl);
+}
+
+.profile-year-group__title {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+/* Empty state */
+.profile-empty {
+    text-align: center;
+    padding: var(--space-3xl);
+    color: var(--color-text-muted);
+}
+
+.profile-empty h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md);
+}
+
+/* Alumni badge */
+.profile-header__alumni-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    background: var(--color-bg-alt);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-left: var(--space-sm);
+    vertical-align: middle;
+}
+
+.profile-header__current {
+    font-size: 0.95rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    margin-bottom: var(--space-md);
+}
+
+@media (max-width: 768px) {
+    .profile-header__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .profile-header__image {
+        margin: 0 auto;
+        width: 150px;
+        height: 150px;
+    }
+
+    .profile-header__links {
+        justify-content: center;
+    }
+
+    .profile-header__name {
+        font-size: 1.75rem;
+    }
+
+    .profile-header__back {
+        text-align: left;
+    }
+}
+

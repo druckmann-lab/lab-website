@@ -1,0 +1,122 @@
+.courses-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.course-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: 8px;
+    padding: var(--space-lg);
+    transition: all var(--transition-base);
+}
+
+.course-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-sm);
+}
+
+.course-card__code {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-xs);
+}
+
+.course-card__title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: var(--space-sm);
+}
+
+.course-card__title a {
+    color: inherit;
+}
+
+.course-card__title a:hover {
+    color: var(--color-accent);
+}
+
+.course-card__description {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.course-card__meta {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.course-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-accent);
+}
+
+.course-card__link:hover {
+    text-decoration: underline;
+}
+
+/* Compact subsection headers */
+.subsection__title {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.subsection__intro {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+}
+
+/* Reading section */
+.reading-section {
+    margin-top: var(--space-xl);
+}
+
+.reading-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.reading-item {
+    padding: var(--space-lg);
+    background: var(--color-bg-alt);
+    border-radius: 8px;
+}
+
+.reading-item__title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: var(--space-xs);
+}
+
+.reading-item__authors {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+.reading-item__description {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+

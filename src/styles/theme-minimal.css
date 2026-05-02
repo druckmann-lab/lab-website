@@ -1,0 +1,826 @@
+/* ============================================
+   MINIMAL THEME — Clean, Jazlab/NeuroAI-inspired
+   Activated via html.theme-minimal
+   ============================================ */
+
+/* --- Override CSS Variables --- */
+html.theme-minimal {
+    --color-bg: #ffffff;
+    --color-bg-alt: #f8f8f8;
+    --color-bg-warm: #f4f4f4;
+    --color-surface: #ffffff;
+
+    --color-text: #111111;
+    --color-text-secondary: #555555;
+    --color-text-muted: #999999;
+    --color-text-faint: #cccccc;
+
+    --color-accent: #1a1a1a;
+    --color-accent-light: #f0f0f0;
+    --color-accent-dark: #000000;
+
+    --color-border: #e0e0e0;
+    --color-border-light: #eeeeee;
+
+    /* Single font family */
+    --font-serif: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+}
+
+/* --- Typography --- */
+html.theme-minimal h1,
+html.theme-minimal h2,
+html.theme-minimal h3,
+html.theme-minimal h4,
+html.theme-minimal h5,
+html.theme-minimal h6 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+html.theme-minimal a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 3px;
+}
+
+html.theme-minimal a:hover {
+    color: var(--color-text);
+    text-decoration-color: var(--color-text);
+}
+
+/* --- Navigation — clean, bold, no animations --- */
+html.theme-minimal .nav {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid var(--color-border);
+}
+
+html.theme-minimal .nav__logo {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0;
+    text-decoration: none;
+}
+
+html.theme-minimal .nav__logo::before,
+html.theme-minimal .nav__logo::after {
+    display: none;
+}
+
+html.theme-minimal .nav__logo:hover {
+    color: var(--color-text);
+}
+
+html.theme-minimal .nav__link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+}
+
+html.theme-minimal .nav__link::after {
+    display: none;
+}
+
+html.theme-minimal .nav__link:hover,
+html.theme-minimal .nav__link.active {
+    color: var(--color-text);
+}
+
+/* --- Hero — simplified --- */
+html.theme-minimal .hero {
+    background: var(--color-bg);
+}
+
+html.theme-minimal .hero__tagline {
+    font-family: var(--font-sans);
+    font-weight: 400;
+}
+
+html.theme-minimal .hero__banner {
+    background: #111111;
+}
+
+html.theme-minimal .hero__affiliations a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+}
+
+html.theme-minimal .hero__affiliations a:hover {
+    text-decoration-color: var(--color-text);
+}
+
+/* --- Sections — flattened --- */
+html.theme-minimal .section--alt {
+    background: var(--color-bg-alt);
+}
+
+html.theme-minimal .section__eyebrow {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+html.theme-minimal .section__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+/* --- Cards — border only, no hover lift --- */
+html.theme-minimal .card {
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+    box-shadow: none;
+}
+
+html.theme-minimal .card:hover {
+    border-color: var(--color-text);
+    box-shadow: none;
+    transform: none;
+}
+
+html.theme-minimal .card__eyebrow {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .card__title {
+    font-family: var(--font-sans);
+}
+
+/* --- Buttons — high contrast, no lift --- */
+html.theme-minimal .btn {
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+html.theme-minimal .btn--primary {
+    background: var(--color-text);
+    color: #ffffff;
+}
+
+html.theme-minimal .btn--primary:hover {
+    background: #333333;
+    color: #ffffff;
+    transform: none;
+}
+
+html.theme-minimal .btn--secondary:hover {
+    border-color: var(--color-text);
+    transform: none;
+}
+
+html.theme-minimal .btn:hover svg {
+    transform: none;
+}
+
+/* --- Team members — no hover scale --- */
+html.theme-minimal .team-member__photo {
+    background: var(--color-bg-alt);
+}
+
+html.theme-minimal .team-member:hover .team-member__photo {
+    transform: none;
+}
+
+html.theme-minimal .team-member__name {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .team-member__role {
+    color: var(--color-text-muted);
+}
+
+/* --- Publications — clean dividers --- */
+html.theme-minimal .pub-item:hover {
+    background: var(--color-bg-alt);
+    transform: none;
+}
+
+html.theme-minimal .pub-item__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .pub-item__year {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+/* --- Page headers — flat background --- */
+html.theme-minimal .page-header {
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+html.theme-minimal .page-header__title {
+    font-family: var(--font-sans);
+    font-weight: 700;
+}
+
+html.theme-minimal .page-header__eyebrow {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+/* --- Footer — clean --- */
+html.theme-minimal .footer {
+    background: var(--color-bg-alt);
+    border-top: 1px solid var(--color-border);
+}
+
+html.theme-minimal .footer__column h4 {
+    font-family: var(--font-sans);
+}
+
+/* --- Animations — disabled --- */
+html.theme-minimal .animate-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+}
+
+html.theme-minimal ::selection {
+    background: var(--color-text);
+    color: #ffffff;
+}
+
+/* ============================================
+   INDEX PAGE OVERRIDES
+   ============================================ */
+
+/* Research areas — flat visual boxes */
+html.theme-minimal .research-area__visual {
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-alt);
+}
+
+html.theme-minimal .research-area__number {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+html.theme-minimal .research-area__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .keyword {
+    font-family: var(--font-sans);
+    border-radius: 2px;
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+}
+
+/* News timeline — simplified */
+html.theme-minimal .news-timeline::before {
+    background: var(--color-border);
+}
+
+html.theme-minimal .news-item::before {
+    background: var(--color-text);
+    box-shadow: 0 0 0 2px var(--color-text);
+    border-color: var(--color-bg);
+}
+
+html.theme-minimal .news-item:hover::before {
+    transform: none;
+    box-shadow: 0 0 0 2px var(--color-text);
+}
+
+html.theme-minimal .news-item__date {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+html.theme-minimal .news-item__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .news-item__tag {
+    background: var(--color-bg-alt);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+}
+
+/* Affiliations — no hover lift */
+html.theme-minimal .affiliations__logos a:hover {
+    transform: none;
+}
+
+html.theme-minimal .affiliations__logos img {
+    filter: grayscale(0%);
+}
+
+/* Pub cards on index — flat */
+html.theme-minimal .pub-card {
+    border-radius: 4px;
+}
+
+html.theme-minimal .pub-card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--color-text);
+}
+
+html.theme-minimal .pub-card__year {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+html.theme-minimal .pub-card__venue-badge {
+    background: var(--color-text);
+}
+
+html.theme-minimal .pub-card__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .pub-link {
+    border-radius: 2px;
+    color: var(--color-text-secondary);
+    border-color: var(--color-border);
+}
+
+html.theme-minimal .pub-link:hover {
+    color: var(--color-text);
+    border-color: var(--color-text);
+    background: transparent;
+}
+
+/* SVG animations — stop them */
+html.theme-minimal .main-trajectory {
+    animation: none;
+    stroke-dashoffset: 0;
+}
+
+html.theme-minimal .data-point {
+    animation: none;
+    opacity: 1;
+}
+
+html.theme-minimal .pulse-ring {
+    animation: none;
+}
+
+html.theme-minimal .neural-bar {
+    animation: none;
+    transform: scaleX(0.6);
+    opacity: 0.6;
+}
+
+/* ============================================
+   PEOPLE PAGE OVERRIDES
+   ============================================ */
+
+html.theme-minimal .pi-section {
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+html.theme-minimal .pi-section__image {
+    border-radius: 4px;
+}
+
+html.theme-minimal .pi-section__name {
+    font-family: var(--font-sans);
+    font-weight: 700;
+}
+
+html.theme-minimal .pi-section__name a {
+    text-decoration: none;
+}
+
+html.theme-minimal .pi-section__name a:hover {
+    text-decoration: underline;
+}
+
+html.theme-minimal .pi-section__role {
+    color: var(--color-text-secondary);
+}
+
+html.theme-minimal .pi-section__link {
+    border-radius: 4px;
+    box-shadow: none;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+}
+
+html.theme-minimal .pi-section__link:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--color-text);
+    color: var(--color-text);
+}
+
+html.theme-minimal .person-card__image {
+    border-radius: 4px;
+}
+
+html.theme-minimal .person-card__image:hover {
+    transform: none;
+}
+
+html.theme-minimal .person-card__name {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .person-card__name a {
+    text-decoration: none;
+}
+
+html.theme-minimal .person-card__role {
+    color: var(--color-text-muted);
+}
+
+html.theme-minimal .person-card__link:hover {
+    background: var(--color-text);
+}
+
+html.theme-minimal .team-section__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .alumni-section {
+    background: var(--color-bg-alt);
+    border-radius: 4px;
+}
+
+html.theme-minimal .alumni-card__image {
+    border-radius: 4px;
+}
+
+/* ============================================
+   PUBLICATIONS PAGE OVERRIDES
+   ============================================ */
+
+html.theme-minimal .pub-toolbar {
+    background: var(--color-bg-alt);
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+}
+
+html.theme-minimal .pub-toolbar__stat-value {
+    font-family: var(--font-sans);
+    font-weight: 700;
+}
+
+html.theme-minimal .pub-toolbar__stat-label {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .filter-palette__trigger {
+    border-radius: 4px;
+}
+
+html.theme-minimal .filter-palette__trigger:hover {
+    border-color: var(--color-text);
+    box-shadow: none;
+}
+
+html.theme-minimal .filter-palette__trigger:focus-within {
+    border-color: var(--color-text);
+    box-shadow: none;
+}
+
+html.theme-minimal .filter-palette__count {
+    background: var(--color-text);
+}
+
+html.theme-minimal .filter-palette__dropdown {
+    border-radius: 4px;
+}
+
+html.theme-minimal .filter-chip {
+    background: var(--color-text);
+    border-radius: 2px;
+    animation: none;
+}
+
+html.theme-minimal .year-group__title {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    background: var(--color-bg-alt);
+    border-radius: 2px;
+}
+
+html.theme-minimal .year-group__line {
+    background: var(--color-border);
+}
+
+html.theme-minimal .pub-section__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .pub-section__count {
+    font-family: var(--font-sans);
+}
+
+html.theme-minimal .publication__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .publication__number {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .selected-pubs .publication {
+    border-radius: 4px;
+}
+
+html.theme-minimal .selected-pubs .publication:hover {
+    border-color: var(--color-text);
+    box-shadow: none;
+}
+
+html.theme-minimal .preprints .publication {
+    background: var(--color-bg-alt);
+    border-radius: 4px;
+}
+
+html.theme-minimal .preprint-badge {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    border-radius: 2px;
+}
+
+html.theme-minimal .year-badge {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    background: var(--color-text);
+    border-radius: 2px;
+}
+
+html.theme-minimal .results-info {
+    background: var(--color-bg-alt);
+    border-left: 3px solid var(--color-text);
+    border-radius: 0;
+}
+
+html.theme-minimal .results-info strong {
+    color: var(--color-text);
+}
+
+/* ============================================
+   TEACHING PAGE OVERRIDES
+   ============================================ */
+
+html.theme-minimal .course-card {
+    border-radius: 4px;
+}
+
+html.theme-minimal .course-card:hover {
+    border-color: var(--color-text);
+    box-shadow: none;
+}
+
+html.theme-minimal .course-card__code {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+html.theme-minimal .course-card__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .reading-item {
+    border-radius: 4px;
+}
+
+html.theme-minimal .reading-item__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+/* ============================================
+   CONTACT PAGE OVERRIDES
+   ============================================ */
+
+html.theme-minimal .contact-card {
+    border-radius: 4px;
+}
+
+html.theme-minimal .contact-card__icon {
+    background: var(--color-bg-alt);
+    border-radius: 4px;
+    color: var(--color-text);
+}
+
+html.theme-minimal .contact-card__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .join-section {
+    border-radius: 4px;
+}
+
+html.theme-minimal .join-section__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .position {
+    border-radius: 4px;
+}
+
+html.theme-minimal .position:hover {
+    box-shadow: none;
+    border-color: var(--color-text);
+}
+
+html.theme-minimal .position__status {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .map-container {
+    border-radius: 4px;
+    box-shadow: none;
+    border: 1px solid var(--color-border);
+}
+
+/* ============================================
+   NEWS PAGE OVERRIDES
+   ============================================ */
+
+html.theme-minimal .news-section {
+    background: var(--color-bg);
+}
+
+html.theme-minimal .news-year__title {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    color: var(--color-text);
+    border-bottom-color: var(--color-border);
+}
+
+html.theme-minimal .news-item__link {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+}
+
+html.theme-minimal .news-item__link:hover {
+    text-decoration-color: var(--color-text);
+    gap: 4px;
+}
+
+/* ============================================
+   PERSON PROFILE OVERRIDES
+   ============================================ */
+
+html.theme-minimal .profile-header {
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+html.theme-minimal .profile-header__image {
+    border-radius: 4px;
+}
+
+html.theme-minimal .profile-header__name {
+    font-family: var(--font-sans);
+    font-weight: 700;
+}
+
+html.theme-minimal .profile-header__role {
+    color: var(--color-text-secondary);
+}
+
+html.theme-minimal .profile-header__link {
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+html.theme-minimal .profile-header__link:hover {
+    color: var(--color-text);
+    border-color: var(--color-text);
+}
+
+html.theme-minimal .profile-section__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .profile-pub-item__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .profile-year-group__title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+html.theme-minimal .profile-header__alumni-badge {
+    border-radius: 2px;
+}
+
+html.theme-minimal .profile-header__current {
+    color: var(--color-text-secondary);
+}
+
+/* ============================================
+   NEWS ITEM PAGE OVERRIDES
+   ============================================ */
+
+html.theme-minimal .news-header {
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+html.theme-minimal .news-header__date {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+html.theme-minimal .news-header__title {
+    font-family: var(--font-sans);
+    font-weight: 700;
+}
+
+html.theme-minimal .news-header__tag {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    border-radius: 2px;
+}
+
+html.theme-minimal .news-content__external {
+    border-radius: 4px;
+    background: var(--color-bg-alt);
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+html.theme-minimal .news-content__external:hover {
+    background: var(--color-text);
+    color: #ffffff;
+}
+
+/* ============================================
+   THEME SWITCHER BUTTON
+   ============================================ */
+
+.theme-switcher {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.theme-switcher__btn {
+    padding: 8px 14px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #999;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.theme-switcher__btn:hover {
+    color: #333;
+}
+
+.theme-switcher__btn.active {
+    background: #111;
+    color: #fff;
+}

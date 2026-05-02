@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People — Druckmann Lab</title>
+    <meta name="description" content="Meet the members of the Druckmann Lab at Stanford University.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="src/styles/style.css">
+
+    <link rel="stylesheet" href="src/styles/pages/people.css">
+    <link rel="stylesheet" href="src/styles/theme-minimal.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo">Druckmann Lab</a>
+            <ul class="nav__links">
+                <li><a href="people.html" class="nav__link active">People</a></li>
+                <li><a href="research.html" class="nav__link">Research</a></li>
+                <li><a href="publications.html" class="nav__link">Publications</a></li>
+                <li><a href="teaching.html" class="nav__link">Teaching</a></li>
+                <li><a href="contact.html" class="nav__link">Contact</a></li>
+                <li><a href="blog/" class="nav__link">Blog</a></li>
+                <!-- <li><a href="news.html" class="nav__link">News</a></li> -->
+            </ul>
+            <button class="nav__toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <header class="page-header">
+            <div class="container">
+                <h1 class="page-header__title">People</h1>
+                <p class="page-header__description">
+                    Our team combines expertise in neuroscience, physics, mathematics,
+                    and computer science to study neural computation.
+                </p>
+            </div>
+        </header>
+
+        <!-- PI Section -->
+        <section class="pi-section" id="pi-section"></section>
+
+        <section class="section">
+            <div class="container">
+                <!-- Postdocs -->
+                <div class="team-section" id="postdocs-section"></div>
+
+                <!-- Graduate Students -->
+                <div class="team-section" id="students-section"></div>
+
+                <!-- Research Staff -->
+                <div class="team-section" id="staff-section"></div>
+
+                <!-- Alumni (hidden for now)
+                <div class="team-section" id="alumni-section"></div>
+                -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <a href="https://www.stanford.edu/" target="_blank" rel="noopener" class="footer__stanford-logo">
+                        <img src="public/logos/stanford.png" alt="Stanford University"
+                            style="height: 48px; opacity: 0.8;">
+                    </a>
+                    <p class="footer__logo">Druckmann Lab</p>
+                    <p class="footer__tagline">Computational neuroscience research at Stanford University.</p>
+                </div>
+                <div class="footer__links">
+                                        <div class="footer__column">
+                        <h4>Lab</h4>
+                        <ul>
+                            <li><a href="people.html">People</a></li>
+                            <li><a href="publications.html">Publications</a></li>
+                            <li><a href="teaching.html">Teaching</a></li>
+                            <li><a href="news.html">News</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4>Code &amp; Tools</h4>
+                        <ul>
+                            <li><a href="https://github.com/druckmann-lab">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">©
+                <script>document.write(new Date().getFullYear())</script> Druckmann Lab
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { PI, POSTDOCS, GRAD_STUDENTS, STAFF, ALUMNI } from './src/data/members/index.js';
+
+        // Render PI section
+        function renderPISection() {
+            const section = document.getElementById('pi-section');
+            const emailIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`;
+            const profileIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+            const scholarIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
+
+            const links = [];
+            if (PI.email) links.push(`<a href="mailto:${PI.email}" class="pi-section__link">${emailIcon} Email</a>`);
+            if (PI.website) links.push(`<a href="${PI.website}" target="_blank" class="pi-section__link">${profileIcon} Profile</a>`);
+            if (PI.scholar) links.push(`<a href="${PI.scholar}" target="_blank" class="pi-section__link">${scholarIcon} Scholar</a>`);
+
+            section.innerHTML = `
+                <div class="pi-section__inner">
+                    <img src="public/members/${PI.img}" 
+                         alt="${PI.name}" 
+                         class="pi-section__image"
+                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23f5f3f0%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%239c9490%22 font-size=%2240%22>${PI.name.charAt(0)}</text></svg>'">
+                    <div class="pi-section__content">
+                        <h2 class="pi-section__name"><a href="person.html?id=${PI.id}">${PI.name}</a></h2>
+                        <p class="pi-section__role">${PI.role}</p>
+                        ${PI.bio ? `<p class="pi-section__bio">${PI.bio}</p>` : ''}
+                        ${links.length ? `<div class="pi-section__links">${links.join('')}</div>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render person card (div wrapper with sleek icon links)
+        function renderPersonCard(person) {
+            const emailIcon = `<svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`;
+            const webIcon = `<svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`;
+            const scholarIcon = `<svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`;
+
+            const links = [];
+            if (person.email) links.push(`<a href="mailto:${person.email}" class="person-card__link" title="Email">${emailIcon}</a>`);
+            if (person.website) links.push(`<a href="${person.website}" target="_blank" class="person-card__link" title="Website">${webIcon}</a>`);
+            if (person.scholar) links.push(`<a href="${person.scholar}" target="_blank" class="person-card__link" title="Google Scholar">${scholarIcon}</a>`);
+
+            return `
+                <div class="person-card">
+                    <a href="person.html?id=${person.id}">
+                        <img src="public/members/${person.img}" 
+                             alt="${person.name}" 
+                             class="person-card__image"
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23f5f3f0%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%239c9490%22 font-size=%2232%22>${person.name.charAt(0)}</text></svg>'">
+                    </a>
+                    <h3 class="person-card__name"><a href="person.html?id=${person.id}">${person.name}</a></h3>
+                    <p class="person-card__role">${person.role}</p>
+                    ${person.program ? `<p class="person-card__program">${person.program}</p>` : ''}
+                    ${links.length ? `<div class="person-card__links">${links.join('')}</div>` : ''}
+                </div>
+            `;
+        }
+
+        // Render alumni card (compact, no email on list)
+        function renderAlumniCard(person) {
+            return `
+                <a href="person.html?id=${person.id}" class="alumni-card">
+                    <img src="public/members/${person.img}" 
+                         alt="${person.name}" 
+                         class="alumni-card__image"
+                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23fff%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%239c9490%22 font-size=%2228%22>${person.name.charAt(0)}</text></svg>'">
+                    <p class="alumni-card__name">${person.name}</p>
+                    <p class="alumni-card__role">${person.role}</p>
+                    ${person.currentPosition ? `<p class="alumni-card__current">${person.currentPosition}</p>` : ''}
+                </a>
+            `;
+        }
+
+        // Render team section
+        function renderTeamSection(containerId, title, members, isAlumni = false) {
+            const container = document.getElementById(containerId);
+            if (!container || members.length === 0) {
+                if (container) container.style.display = 'none';
+                return;
+            }
+
+            if (isAlumni) {
+                container.innerHTML = `
+                    <div class="alumni-section">
+                        <div class="team-section__header">
+                            <h2 class="team-section__title">${title}</h2>
+                        </div>
+                        <div class="alumni-grid">
+                            ${members.map(m => renderAlumniCard(m)).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="team-section__header">
+                        <h2 class="team-section__title">${title}</h2>
+                    </div>
+                    <div class="team-grid">
+                        ${members.map(m => renderPersonCard(m)).join('')}
+                    </div>
+                `;
+            }
+        }
+
+        // Initial render
+        renderPISection();
+        renderTeamSection('postdocs-section', 'Postdoctoral Fellows', POSTDOCS);
+        renderTeamSection('students-section', 'Graduate Students', GRAD_STUDENTS);
+        renderTeamSection('staff-section', 'Research Staff', STAFF);
+        // renderTeamSection('alumni-section', 'Alumni', ALUMNI, true);
+
+        // Nav effects
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+        const toggle = document.querySelector('.nav__toggle');
+        const links = document.querySelector('.nav__links');
+        toggle?.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('active');
+        });
+    </script>
+    <script src="src/theme-switcher.js"></script>
+</body>
+
+</html>

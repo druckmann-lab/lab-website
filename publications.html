@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications — Druckmann Lab</title>
+    <meta name="description" content="Publications from the Druckmann Lab at Stanford University.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="src/styles/style.css">
+
+    <link rel="stylesheet" href="src/styles/pages/publications.css">
+    <link rel="stylesheet" href="src/styles/theme-minimal.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="index.html" class="nav__logo">Druckmann Lab</a>
+            <ul class="nav__links">
+                <li><a href="people.html" class="nav__link">People</a></li>
+                <li><a href="research.html" class="nav__link">Research</a></li>
+                <li><a href="publications.html" class="nav__link active">Publications</a></li>
+                <li><a href="teaching.html" class="nav__link">Teaching</a></li>
+                <li><a href="contact.html" class="nav__link">Contact</a></li>
+                <li><a href="blog/" class="nav__link">Blog</a></li>
+                <!-- <li><a href="news.html" class="nav__link">News</a></li> -->
+            </ul>
+            <button class="nav__toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <header class="page-header">
+            <div class="container">
+                <h1 class="page-header__title">Publications</h1>
+                <p class="page-header__description">
+                    Our work on neural population dynamics, circuit mechanisms,
+                    and computational methods.
+                </p>
+            </div>
+        </header>
+
+        <section class="section">
+            <div class="container">
+                <!-- Toolbar: Stats + Filter (hidden via style) -->
+                <div class="pub-toolbar" style="display: none;">
+                    <div class="pub-toolbar__stats">
+                        <div class="pub-toolbar__stat">
+                            <span class="pub-toolbar__stat-value" id="total-pubs">0</span>
+                            <span class="pub-toolbar__stat-label">Publications</span>
+                        </div>
+                        <div class="pub-toolbar__divider"></div>
+                        <div class="pub-toolbar__stat">
+                            <span class="pub-toolbar__stat-value" id="total-venues">0</span>
+                            <span class="pub-toolbar__stat-label">Venues</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-backdrop" id="filter-backdrop"></div>
+                    <div class="filter-palette" id="filter-palette">
+                        <div class="filter-palette__trigger" id="filter-trigger">
+                            <svg class="filter-palette__icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                            </svg>
+                            <input type="text" class="filter-palette__input" id="filter-input"
+                                placeholder="Filter venues..." autocomplete="off">
+                            <span class="filter-palette__count" id="filter-count" style="display: none;">0</span>
+                            <span class="filter-palette__shortcut">⌘K</span>
+                        </div>
+                        <div class="filter-palette__dropdown" id="filter-dropdown">
+                            <div class="filter-palette__list" id="filter-list"></div>
+                            <div class="filter-palette__footer">
+                                <div class="filter-palette__hint">
+                                    <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                                    <span><kbd>↵</kbd> toggle</span>
+                                    <span><kbd>esc</kbd> close</span>
+                                </div>
+                                <span class="filter-palette__clear-btn" id="dropdown-clear">Clear all</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-chips" id="filter-chips" style="display: none;"></div>
+                <div class="results-info" id="results-info" style="display: none;"></div>
+
+                <!-- Selected Publications -->
+                <div class="pub-section selected-pubs" id="selected-section">
+                    <div class="pub-section__header">
+                        <h2 class="pub-section__title">Selected Publications</h2>
+                        <div class="pub-section__line"></div>
+                    </div>
+                    <div id="selected-list"></div>
+                </div>
+
+                <!-- Preprints -->
+                <div class="pub-section preprints" id="preprints-section">
+                    <div class="pub-section__header">
+                        <h2 class="pub-section__title">Preprints</h2>
+                        <div class="pub-section__line"></div>
+                    </div>
+                    <div id="preprints-list"></div>
+                </div>
+
+                <!-- Full List -->
+                <div class="pub-section full-list" id="full-section">
+                    <div class="pub-section__header">
+                        <h2 class="pub-section__title">Full List of Publications</h2>
+                        <div class="pub-section__line"></div>
+                        <span class="pub-section__count" id="pub-count"></span>
+                    </div>
+                    <div id="publications-list"></div>
+                </div>
+
+                <!-- Book Chapters -->
+                <div class="pub-section book-chapters" id="books-section">
+                    <div class="pub-section__header">
+                        <h2 class="pub-section__title">Book Chapters</h2>
+                        <div class="pub-section__line"></div>
+                    </div>
+                    <div id="books-list"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <a href="https://www.stanford.edu/" target="_blank" rel="noopener" class="footer__stanford-logo">
+                        <img src="public/logos/stanford.png" alt="Stanford University"
+                            style="height: 48px; opacity: 0.8;">
+                    </a>
+                    <p class="footer__logo">Druckmann Lab</p>
+                    <p class="footer__tagline">Computational neuroscience research at Stanford University.</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__column">
+                        <h4>Lab</h4>
+                        <ul>
+                            <li><a href="people.html">People</a></li>
+                            <li><a href="publications.html">Publications</a></li>
+                            <li><a href="teaching.html">Teaching</a></li>
+                            <li><a href="news.html">News</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4>Code &amp; Tools</h4>
+                        <ul>
+                            <li><a href="https://github.com/druckmann-lab">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">©
+                <script>document.write(new Date().getFullYear())</script> Druckmann Lab
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { SELECTED_PUBLICATIONS, PREPRINTS, PUBLICATIONS, BOOK_CHAPTERS } from './src/data/publications.js';
+
+        // Get venue counts
+        const venueCounts = {};
+        PUBLICATIONS.forEach(pub => {
+            const venue = pub.venue;
+            venueCounts[venue] = (venueCounts[venue] || 0) + 1;
+        });
+
+        // Sort venues by count
+        const sortedVenues = Object.entries(venueCounts)
+            .sort((a, b) => b[1] - a[1])
+            .map(([venue]) => venue);
+
+        let activeFilters = new Set(); // Changed to Set for multi-select
+
+        function renderPublication(pub, index = null, showYear = true) {
+            const links = [];
+            if (pub.links?.paper) links.push(`<a href="${pub.links.paper}" class="pub-link" target="_blank">Paper</a>`);
+            if (pub.links?.news) links.push(`<a href="${pub.links.news}" class="pub-link" target="_blank">News</a>`);
+            if (pub.links?.code) links.push(`<a href="${pub.links.code}" class="pub-link" target="_blank">Code</a>`);
+
+            return `
+                <article class="publication" data-venue="${pub.venue}">
+                    ${index !== null ? `<div class="publication__number">${index}.</div>` : ''}
+                    <h3 class="publication__title">
+                        ${pub.links?.paper ? `<a href="${pub.links.paper}" target="_blank">${pub.title}</a>` : pub.title}
+                    </h3>
+                    <p class="publication__authors">${pub.authors}</p>
+                    <p class="publication__venue">
+                        ${showYear ? `<span class="year-badge">${pub.year}</span>` : ''}
+                        <em>${pub.venue}</em>
+                    </p>
+                    ${pub.note ? `<p class="publication__note">${pub.note}</p>` : ''}
+                    ${links.length ? `<div class="publication__links">${links.join('')}</div>` : ''}
+                </article>
+            `;
+        }
+
+        function renderPreprint(pub) {
+            return `
+                <article class="publication" data-venue="Preprint">
+                    <span class="preprint-badge">Preprint</span>
+                    <h3 class="publication__title">${pub.title}</h3>
+                    <p class="publication__authors">${pub.authors}</p>
+                </article>
+            `;
+        }
+
+        function renderBookChapter(pub, index) {
+            return `
+                <article class="publication" data-venue="Book Chapter">
+                    <div class="publication__number">${index}.</div>
+                    <h3 class="publication__title">${pub.title}</h3>
+                    <p class="publication__authors">${pub.authors}</p>
+                    <p class="publication__venue"><em>${pub.venue}</em></p>
+                    <p class="publication__editors">${pub.editors} ${pub.publisher}, ${pub.year}${pub.pages ? `, pp. ${pub.pages}` : ''}</p>
+                </article>
+            `;
+        }
+
+        // Update toolbar stats
+        document.getElementById('total-pubs').textContent = PUBLICATIONS.length;
+        document.getElementById('total-venues').textContent = sortedVenues.length;
+
+        // Command Palette Filter
+        const filterInput = document.getElementById('filter-input');
+        const filterDropdown = document.getElementById('filter-dropdown');
+        const filterList = document.getElementById('filter-list');
+        const filterBackdrop = document.getElementById('filter-backdrop');
+        const filterChipsContainer = document.getElementById('filter-chips');
+        const filterCountBadge = document.getElementById('filter-count');
+        const dropdownClearBtn = document.getElementById('dropdown-clear');
+
+        let isDropdownOpen = false;
+        let highlightedIndex = -1;
+        let filteredVenues = [...sortedVenues];
+
+        function openDropdown() {
+            isDropdownOpen = true;
+            filterDropdown.classList.add('open');
+            filterBackdrop.classList.add('open');
+            highlightedIndex = -1;
+            filterInput.focus();
+            renderDropdownList();
+        }
+
+        function closeDropdown() {
+            isDropdownOpen = false;
+            filterDropdown.classList.remove('open');
+            filterBackdrop.classList.remove('open');
+            filterInput.value = '';
+            filteredVenues = [...sortedVenues];
+            highlightedIndex = -1;
+        }
+
+        function renderDropdownList() {
+            if (filteredVenues.length === 0) {
+                filterList.innerHTML = '<div class="filter-palette__empty">No venues found</div>';
+                return;
+            }
+
+            filterList.innerHTML = filteredVenues.map((venue, index) => `
+                <div class="filter-palette__item ${index === highlightedIndex ? 'highlighted' : ''} ${activeFilters.has(venue) ? 'selected' : ''}" 
+                     data-venue="${venue}" data-index="${index}">
+                    <div class="filter-palette__item-check">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <span class="filter-palette__item-name">${highlightMatch(venue, filterInput.value)}</span>
+                    <span class="filter-palette__item-count">${venueCounts[venue]}</span>
+                </div>
+            `).join('');
+
+            // Add click handlers
+            filterList.querySelectorAll('.filter-palette__item').forEach(item => {
+                item.addEventListener('click', () => {
+                    toggleFilter(item.dataset.venue);
+                });
+            });
+        }
+
+        function highlightMatch(text, query) {
+            if (!query) return text;
+            const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+            return text.replace(regex, '<strong style="color: var(--color-accent)">$1</strong>');
+        }
+
+        function toggleFilter(venue) {
+            if (activeFilters.has(venue)) {
+                activeFilters.delete(venue);
+            } else {
+                activeFilters.add(venue);
+            }
+            applyFilters();
+            renderDropdownList(); // Update checkmarks without closing
+        }
+
+        function removeFilter(venue) {
+            activeFilters.delete(venue);
+            applyFilters();
+        }
+
+        function clearAllFilters() {
+            activeFilters.clear();
+            applyFilters();
+            renderDropdownList();
+        }
+
+        function applyFilters() {
+            // Show/hide publications based on active filters
+            document.querySelectorAll('.publication').forEach(pub => {
+                const pubVenue = pub.dataset.venue;
+                if (activeFilters.size === 0) {
+                    pub.classList.remove('hidden');
+                } else {
+                    pub.classList.toggle('hidden', !activeFilters.has(pubVenue));
+                }
+            });
+
+            // Update filter count badge
+            if (activeFilters.size > 0) {
+                filterCountBadge.textContent = activeFilters.size;
+                filterCountBadge.style.display = 'inline';
+            } else {
+                filterCountBadge.style.display = 'none';
+            }
+
+            // Update results info
+            if (activeFilters.size > 0) {
+                const count = document.querySelectorAll('.publication:not(.hidden)').length;
+                const venueList = [...activeFilters].join(', ');
+                document.getElementById('results-info').innerHTML =
+                    `Showing <strong>${count}</strong> publications in <strong>${activeFilters.size}</strong> venue${activeFilters.size > 1 ? 's' : ''}: ${venueList}`;
+            } else {
+                document.getElementById('results-info').innerHTML = '';
+            }
+
+            // Render active filter chips
+            renderFilterChips();
+
+            // Update section visibility
+            updateSectionVisibility();
+        }
+
+        function renderFilterChips() {
+            if (activeFilters.size === 0) {
+                filterChipsContainer.innerHTML = '';
+                return;
+            }
+
+            const chips = [...activeFilters].map(venue => `
+                <div class="filter-chip">
+                    ${venue}
+                    <span class="filter-chip__remove" data-venue="${venue}">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 6L6 18M6 6l12 12"/>
+                        </svg>
+                    </span>
+                </div>
+            `).join('');
+
+            filterChipsContainer.innerHTML = `
+                <span class="filter-chips__label">Filtered by:</span>
+                ${chips}
+                ${activeFilters.size > 1 ? '<span class="filter-chips__clear" id="clear-all-chips">Clear all</span>' : ''}
+            `;
+
+            // Add click handlers for remove buttons
+            filterChipsContainer.querySelectorAll('.filter-chip__remove').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    removeFilter(btn.dataset.venue);
+                });
+            });
+
+            // Clear all button
+            const clearAllBtn = document.getElementById('clear-all-chips');
+            if (clearAllBtn) {
+                clearAllBtn.addEventListener('click', clearAllFilters);
+            }
+        }
+
+        function updateSectionVisibility() {
+            ['selected-section', 'preprints-section', 'full-section', 'books-section'].forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                const visiblePubs = section.querySelectorAll('.publication:not(.hidden)');
+                section.style.display = visiblePubs.length === 0 ? 'none' : 'block';
+            });
+
+            // Also update year group visibility
+            document.querySelectorAll('.year-group').forEach(group => {
+                const visiblePubs = group.querySelectorAll('.publication:not(.hidden)');
+                group.classList.toggle('hidden', visiblePubs.length === 0);
+            });
+        }
+
+        // Event listeners
+        filterInput.addEventListener('focus', openDropdown);
+        filterBackdrop.addEventListener('click', closeDropdown);
+        dropdownClearBtn.addEventListener('click', () => {
+            clearAllFilters();
+            closeDropdown();
+        });
+
+        filterInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            filteredVenues = sortedVenues.filter(v => v.toLowerCase().includes(query));
+            highlightedIndex = filteredVenues.length > 0 ? 0 : -1;
+            renderDropdownList();
+        });
+
+        filterInput.addEventListener('keydown', (e) => {
+            if (!isDropdownOpen) {
+                if (e.key === 'Enter' || e.key === 'ArrowDown') {
+                    openDropdown();
+                    e.preventDefault();
+                }
+                return;
+            }
+
+            switch (e.key) {
+                case 'ArrowDown':
+                    e.preventDefault();
+                    highlightedIndex = Math.min(highlightedIndex + 1, filteredVenues.length - 1);
+                    renderDropdownList();
+                    scrollToHighlighted();
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    highlightedIndex = Math.max(highlightedIndex - 1, 0);
+                    renderDropdownList();
+                    scrollToHighlighted();
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    if (highlightedIndex >= 0 && filteredVenues[highlightedIndex]) {
+                        toggleFilter(filteredVenues[highlightedIndex]);
+                    }
+                    break;
+                case 'Escape':
+                    closeDropdown();
+                    filterInput.blur();
+                    break;
+            }
+        });
+
+        function scrollToHighlighted() {
+            const highlighted = filterList.querySelector('.highlighted');
+            if (highlighted) {
+                highlighted.scrollIntoView({ block: 'nearest' });
+            }
+        }
+
+        // Keyboard shortcut (Cmd/Ctrl + K)
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                if (isDropdownOpen) {
+                    closeDropdown();
+                } else {
+                    openDropdown();
+                }
+            }
+        });
+
+        // Initial render
+        document.getElementById('selected-list').innerHTML =
+            SELECTED_PUBLICATIONS.map(pub => renderPublication(pub, null, false)).join('');
+
+        document.getElementById('preprints-list').innerHTML =
+            PREPRINTS.map(pub => renderPreprint(pub)).join('');
+
+        // Group publications by year
+        function renderPublicationsByYear() {
+            const byYear = {};
+            PUBLICATIONS.forEach((pub, idx) => {
+                if (!byYear[pub.year]) byYear[pub.year] = [];
+                byYear[pub.year].push({ ...pub, globalIndex: idx + 1 });
+            });
+
+            const years = Object.keys(byYear).sort((a, b) => b - a);
+
+            return years.map(year => `
+                <div class="year-group" data-year="${year}">
+                    <div class="year-group__header">
+                        <h3 class="year-group__title">${year}</h3>
+                        <div class="year-group__line"></div>
+                        <span class="year-group__count">${byYear[year].length} paper${byYear[year].length > 1 ? 's' : ''}</span>
+                    </div>
+                    <div class="year-group__publications">
+                        ${byYear[year].map(pub => renderPublication(pub, pub.globalIndex, false)).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById('publications-list').innerHTML = renderPublicationsByYear();
+        document.getElementById('pub-count').textContent = `${PUBLICATIONS.length} papers`;
+
+        document.getElementById('books-list').innerHTML =
+            BOOK_CHAPTERS.map((pub, i) => renderBookChapter(pub, i + 1)).join('');
+
+        // Navigation scroll
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+        // Mobile toggle
+        const navToggle = document.querySelector('.nav__toggle');
+        const navLinks = document.querySelector('.nav__links');
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    </script>
+    <script src="src/theme-switcher.js"></script>
+</body>
+
+</html>

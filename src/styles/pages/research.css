@@ -1,0 +1,103 @@
+/* Research area layout — two columns: text + visual */
+.research-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--color-border-light);
+    align-items: start;
+}
+
+.research-area:last-child {
+    border-bottom: none;
+}
+
+.research-area:nth-child(even) {
+    direction: rtl;
+}
+
+.research-area:nth-child(even) > * {
+    direction: ltr;
+}
+
+.research-area__content {
+    padding-top: var(--space-sm);
+}
+
+.research-area__number {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-xs);
+}
+
+.research-area__title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: var(--space-sm);
+    line-height: 1.3;
+}
+
+.research-area__text {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-sm);
+}
+
+.research-area__text:last-of-type {
+    margin-bottom: var(--space-sm);
+}
+
+.research-area__keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+.keyword {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    background: var(--color-bg-alt);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-border-light);
+}
+
+/* Visual illustration */
+.research-area__visual {
+    background: var(--color-bg-alt);
+    border-radius: 8px;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border-light);
+    overflow: hidden;
+}
+
+.research-area__visual svg {
+    width: 80%;
+    height: 80%;
+    opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+    .research-area {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    .research-area:nth-child(even) {
+        direction: ltr;
+    }
+
+    .research-area__visual {
+        order: -1;
+        aspect-ratio: 16/9;
+    }
+}
