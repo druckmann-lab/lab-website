@@ -477,30 +477,8 @@
             PREPRINTS.map(pub => renderPreprint(pub)).join('');
 
         // Group publications by year
-        function renderPublicationsByYear() {
-            const byYear = {};
-            PUBLICATIONS.forEach((pub, idx) => {
-                if (!byYear[pub.year]) byYear[pub.year] = [];
-                byYear[pub.year].push({ ...pub, globalIndex: idx + 1 });
-            });
-
-            const years = Object.keys(byYear).sort((a, b) => b - a);
-
-            return years.map(year => `
-                <div class="year-group" data-year="${year}">
-                    <div class="year-group__header">
-                        <h3 class="year-group__title">${year}</h3>
-                        <div class="year-group__line"></div>
-                        <span class="year-group__count"></span>
-                    </div>
-                    <div class="year-group__publications">
-                        ${byYear[year].map(pub => renderPublication(pub, pub.globalIndex, false)).join('')}
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        document.getElementById('publications-list').innerHTML = renderPublicationsByYear();
+        document.getElementById('publications-list').innerHTML =
+            PUBLICATIONS.map((pub, i) => renderPublication(pub, i + 1)).join('');
         document.getElementById('pub-count').textContent = '';
 
         document.getElementById('books-list').innerHTML =
