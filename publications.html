@@ -496,7 +496,7 @@
                     <div class="year-group__header">
                         <h3 class="year-group__title">${year}</h3>
                         <div class="year-group__line"></div>
-                        <span class="year-group__count">${byYear[year].length} paper${byYear[year].length > 1 ? 's' : ''}</span>
+                        <span class="year-group__count"></span>
                     </div>
                     <div class="year-group__publications">
                         ${byYear[year].map(pub => renderPublication(pub, pub.globalIndex, false)).join('')}
@@ -506,7 +506,7 @@
         }
 
         document.getElementById('publications-list').innerHTML = renderPublicationsByYear();
-        document.getElementById('pub-count').textContent = `${PUBLICATIONS.length} papers`;
+        document.getElementById('pub-count').textContent = '';
 
         document.getElementById('books-list').innerHTML =
             BOOK_CHAPTERS.map((pub, i) => renderBookChapter(pub, i + 1)).join('');
