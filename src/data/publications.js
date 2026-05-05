@@ -99,20 +99,29 @@ export const PREPRINTS = [
 // ===========================================
 
 export const PUBLICATIONS = [
+  // -------- 2026 --------
+  {
+    id: "wang2026natneurosci",
+    title: "Brain-wide analysis reveals movement encoding structured across and within brain areas",
+    authors: "Ziyue Aiden Wang, Balint Kurgyis, Susu Chen, Byungwoo Kang, Feng Chen, Yi Liu, Dave Liu, Karel Svoboda, Nuo Li, Shaul Druckmann",
+    venue: "Nature Neuroscience",
+    year: 2026,
+    links: { paper: "https://www.nature.com/articles/s41593-025-02114-x" }
+  },
+  {
+    id: "kang2026natcomm",
+    title: "Recurrent connections facilitate occluded object recognition by explaining-away",
+    authors: "Byungwoo Kang, Benjamin Midler, Feng Chen, Shaul Druckmann",
+    venue: "Nature Communications",
+    year: 2026,
+    links: { paper: "https://www.nature.com/articles/s41467-026-68806-5" }
+  },
   // -------- 2025 --------
   {
     id: "wilson2025natbiomed",
     title: "Long-term unsupervised recalibration of cursor-based intracortical brain-computer interfaces using a hidden Markov model",
     authors: "Guy H. Wilson, Elias A. Stein, Foram Kamdar, Donald T. Avansino, Tsam Kiu Pun, Ronnie Gross, Leigh R. Hochberg, Krishna V. Shenoy, Jaimie M. Henderson, Shaul Druckmann, Francis R. Willett",
     venue: "Nature Biomedical Engineering",
-    year: 2025,
-    links: {}
-  },
-  {
-    id: "wang2025natneurosci",
-    title: "Brain-wide analysis reveals movement encoding structured across and within brain areas",
-    authors: "Ziyue Aiden Wang, Balint Kurgyis, Susu Chen, Byungwoo Kang, Feng Chen, Yi Liu, Dave Liu, Karel Svoboda, Nuo Li, Shaul Druckmann",
-    venue: "Nature Neuroscience",
     year: 2025,
     links: {}
   },
