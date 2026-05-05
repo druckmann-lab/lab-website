@@ -53,22 +53,6 @@ export const SELECTED_PUBLICATIONS = [
 
 export const PREPRINTS = [
   {
-    id: "chen2025arxiv",
-    title: "Rethinking fine-tuning when scaling test-time compute: Limiting confidence improves mathematical reasoning",
-    authors: "Feng Chen, Alvaro Raventos, Nikhil Cheng, Surya Ganguli, Shaul Druckmann",
-    venue: "arXiv",
-    year: 2025,
-    links: { paper: "https://arxiv.org/abs/2502.07154" }
-  },
-  {
-    id: "zhao2024arxiv",
-    title: "Informed correctors for discrete diffusion models",
-    authors: "Yixiu Zhao, Jiaxin Shi, Feng Chen, Shaul Druckmann, Lester Mackey, Scott Linderman",
-    venue: "arXiv",
-    year: 2024,
-    links: { paper: "https://arxiv.org/abs/2407.21243" }
-  },
-  {
     id: "benster2024arxiv",
     title: "A cross-modal approach to silent speech with LLM-enhanced recognition",
     authors: "Tyler Benster, Guy H. Wilson, Reshef Elisha, Francis R. Willett, Shaul Druckmann",
@@ -117,6 +101,22 @@ export const PUBLICATIONS = [
     links: { paper: "https://www.nature.com/articles/s41467-026-68806-5" }
   },
   // -------- 2025 --------
+  {
+    id: "chen2025neurips",
+    title: "Rethinking fine-tuning when scaling test-time compute: Limiting confidence improves mathematical reasoning",
+    authors: "Feng Chen, Alvaro Raventos, Nikhil Cheng, Surya Ganguli, Shaul Druckmann",
+    venue: "NeurIPS",
+    year: 2025,
+    links: { paper: "https://arxiv.org/abs/2502.07154" }
+  },
+  {
+    id: "zhao2025neurips",
+    title: "Informed correctors for discrete diffusion models",
+    authors: "Yixiu Zhao, Jiaxin Shi, Feng Chen, Shaul Druckmann, Lester Mackey, Scott Linderman",
+    venue: "NeurIPS",
+    year: 2025,
+    links: { paper: "https://arxiv.org/abs/2407.21243" }
+  },
   {
     id: "wilson2025natbiomed",
     title: "Long-term unsupervised recalibration of cursor-based intracortical brain-computer interfaces using a hidden Markov model",
