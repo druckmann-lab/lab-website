@@ -5,16 +5,18 @@ export default {
   img: "balintkurgyis.jpg",
 
   // === OPTIONAL ===
-  program: "",                    // e.g., "Neurosciences", "Physics", "Computer Science"
-  coAdvisor: "",                  // e.g., "Jane Smith"
+  program: "Physics",                    // e.g., "Neurosciences", "Physics", "Computer Science"
+  coAdvisor: "Surya Ganguli",                  // e.g., "Jane Smith"
   education: [
+    "MS - Neurosciences, Stanford University",
+    "BS - Physics, Eotvos Lorand University"
     // "PhD - Field, University",
     // "MS - Field, University",
     // "BS - Field, University",
   ],
 
   // === CONTACT (add what you want visible) ===
-  email: "",                      // e.g., "you@stanford.edu"
+  email: "kurgyis@stanford.edu",                      // e.g., "you@stanford.edu"
   website: "",                    // e.g., "https://yoursite.com"
   scholar: "",                    // e.g., "https://scholar.google.com/citations?user=XXXXX"
   linkedin: "",                   // e.g., "https://linkedin.com/in/yourname"
