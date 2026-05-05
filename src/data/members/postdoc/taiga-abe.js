@@ -2,22 +2,17 @@ export default {
   id: "taigaabe",
   name: "Taiga Abe",
   role: "Postdoc",
-  education: ["PhD - Major, XYZ University"],
-  img: "taigaabe.png",
+  img: "taigaabe.jpg",
 
   // === OPTIONAL ===
-  program: "",                    // e.g., "Neurosciences", "Physics", "Computer Science"
+  program: "Neuroscience",                    // e.g., "Neurosciences", "Physics", "Computer Science"
   coAdvisor: "",                  // e.g., "Jane Smith"
-  education: [
-    // "PhD - Field, University",
-    // "MS - Field, University",
-    // "BS - Field, University",
-  ],
+  education: ["PhD - Computational Neuroscience, Columbia University"],
 
   // === CONTACT (add what you want visible) ===
-  email: "",                      // e.g., "you@stanford.edu"
-  website: "",                    // e.g., "https://yoursite.com"
-  scholar: "",                    // e.g., "https://scholar.google.com/citations?user=XXXXX"
+  email: "taigaabe@stanford.edu",                      // e.g., "you@stanford.edu"
+  website: "https://cellistigs.github.io",                    // e.g., "https://yoursite.com"
+  scholar: "https://scholar.google.com/citations?user=zQsc0mcAAAAJ&hl=en",                    // e.g., "https://scholar.google.com/citations?user=XXXXX"
   linkedin: "",                   // e.g., "https://linkedin.com/in/yourname"
 
   // === FOR ALUMNI ONLY ===

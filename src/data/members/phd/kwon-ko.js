@@ -2,20 +2,19 @@ export default {
   id: "kwonko",
   name: "Kwon Ko",
   role: "Graduate Student",
-  img: "kwonko.png",
+  img: "kwonko.jpg",
 
   // === OPTIONAL ===
   program: "Computer Science",                    // e.g., "Neurosciences", "Physics", "Computer Science"
   coAdvisor: "",                  // e.g., "Jane Smith"
   education: [
-    // "PhD - Field, University",
-    // "MS - Field, University",
-    // "BS - Field, University",
+    "MS - Computer Science and Engineering, Seoul National University",
+    "BS - Mathematics, Hanyang University",
   ],
 
   // === CONTACT (add what you want visible) ===
   email: "kwonko@stanford.edu",                      // e.g., "you@stanford.edu"
-  website: "",                    // e.g., "https://yoursite.com"
+  website: "https://hyungkwonko.info/",                    // e.g., "https://yoursite.com"
   scholar: "",                    // e.g., "https://scholar.google.com/citations?user=XXXXX"
   linkedin: "",                   // e.g., "https://linkedin.com/in/yourname"
 
