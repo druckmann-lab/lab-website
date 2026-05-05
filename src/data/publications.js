@@ -61,14 +61,6 @@ export const PREPRINTS = [
     links: { paper: "https://arxiv.org/abs/2403.05583" }
   },
   {
-    id: "kang2020preprint",
-    title: "Computational dissection of the influence of recurrent connections in processing occluded stimuli",
-    authors: "Byungwoo Kang, Shaul Druckmann",
-    venue: "bioRxiv",
-    year: 2020,
-    links: {}
-  },
-  {
     id: "daie2023preprint",
     title: "Feedforward amplification in recurrent networks underlies paradoxical neural coding",
     authors: "Kayvon Daie, Lorenzo Fontolan, Shaul Druckmann, Karel Svoboda",

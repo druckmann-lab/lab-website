@@ -199,8 +199,7 @@
                     <h3 class="publication__title">
                         ${index !== null ? `<span class="publication__number">${index}.</span> ` : ''}${pub.links?.paper ? `<a href="${pub.links.paper}" target="_blank">${pub.title}</a>` : pub.title}
                     </h3>
-                    <p class="publication__authors">${abbreviateAuthors(pub.authors)} (${pub.year}). <em>${pub.venue}</em>${pub.note ? `. ${pub.note}` : ''}</p>
-                    ${links.length ? `<div class="publication__links">${links.join('')}</div>` : ''}
+                    <p class="publication__authors">${abbreviateAuthors(pub.authors)} (${pub.year}). <em>${pub.venue}</em>${pub.note ? `. ${pub.note}` : ''}${links.length ? ` ${links.join(' ')}` : ''}</p>
                 </article>
             `;
         }
